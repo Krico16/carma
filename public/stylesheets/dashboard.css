@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+header,
+main,
+footer {
+    padding-left: 300px;
+}
+
+@media only screen and (max-width : 992px) {
+
+    header,
+    main,
+    footer {
+        padding-left: 0;
+    }
+}
+
+body {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+.gradient {
+
+    background-color: #2E2E2E !important;
+
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    margin: auto;
+}
+
+.sticky-nav {
+    position: fixed;
+    top: 0;
+    z-index: 1;
+}
+
+.alt {
+    display: block;
+    padding: 0px 5px 5px 65px;
+    text-decoration: none;
+    color: white;
+}
+
+.alt:hover {
+    animation: flow 10s ease-in-out infinite;
+    background: linear-gradient(130deg, #fb0094, #0000ff, #00ff00, #ffff00, #ff0000, #fb0094, #0000ff, #00ff00, #ffff00, #ff0000);
+    background-size: 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 17px;
+}
+
+@keyframes flow {
+    0% {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: 0 0;
+    }
+}
+
+.letter {
+    font-size: 17px;
+}
+
+.plus {
+    max-width: 130px;
+    height: 36px;
+    margin: auto;
+}
+
+.txtbutton {
+    font-size: 12.5px;
+}
+
+h3 {
+    background-color: #bdd4e7;
+    background-image: linear-gradient(315deg, #bdd4e7 0%, #8693ab 74%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 41px;
+    font-weight: bolder;
+}
+
+.images {
+    height: 220px;
+}
+
+p {
+    font-size: 17px;
+
+}
+
+.til {
+    font-size: 21px !important;
+    text-align: center !important;
+}
+
+.tow {
+    background-color: #000000;
+    background-image: linear-gradient(315deg, #000000 0%, #414141 74%);
+
+    background-size: 300%;
+    width: calc(100%+3px);
+    height: calc(100%+3px);
+    animation: star 10s linear infinite;
+}
+
+@keyframes star {
+    0% {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 100% 0;
+    }
+
+    100% {
+        background-position: 0 0;
+    }
+}
+
+.slide-image {
+    width: 100%;
+    height: 100%;
+    max-width: 600px;
+    height: 370px;
+}
+
+.login-href {
+    font-size: 11px;
+    color: royalblue;
+}
+
+.login-href:hover {
+    color: skyblue;
+}
+
+.avatar {
+    width: 200px;
+    height: 200px;
+    padding: 5px;
+}
+.droping{
+    padding: 0px 10px 0px 0px;
+}
+.heighting{
+    height: 450px;
+}
+.log{
+    padding: 15px 15px 0px 15px !important;
+}
+.facebook{
+    color: dodgerblue !important;
+}
+.google{
+    color: orangered !important;
+}
+tam{
+    height: 150px !important;
+}
