@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/:id', function (req, res, next) {
-    res.render('detail', { title: 'Carma Store' });
+    res.render('detail', { title: 'Carma Store | Juego: ' });
 });
 
 module.exports = router;
