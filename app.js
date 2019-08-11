@@ -9,7 +9,7 @@ db.initializeApp({
   credential: db.credential.cert(service), // Or credential
   databaseURL: 'https://carma-web-75ffe.firebaseio.com/'
 });
-var storage = db.storage();
+var storage = db.firestore();
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -51,4 +51,4 @@ app.use(function(err, req, res, next) {
 
 module.exports = app;
 module.exports.db = db.database();
-module.exports.storage = db.storage();
+//module.exports.storage = db.storage();

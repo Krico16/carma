@@ -145,6 +145,23 @@
         </script>
         <div class="contenedor">
             <div class="row">
+                <% Object.keys(games).forEach(function(d){ %>
+                <div class="col s12 m4 l4">
+                    <div class="card">
+                        <a href="#">
+                            <div class="card heighting">
+                                <div class="card-image images">
+                                    <img src="" alt="">
+                                </div>
+                                <div class="card-content">
+                                    <h5 class="card-title til"><%= games[d] %></h5>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <br>
+                </div>
+                <% }); %>
                 <div class="col s12 m4 l4">
                     <a href="#">
                         <div class="card heighting">
@@ -186,8 +203,7 @@
     <footer class="page-footer gradient black-text center">
         <div class="footer-copyright">
             <div class="container white-text">
-                © 2019 Copyright :
-                <a href="#!">Carma / Store</a>
+                © 2019 Copyright : <a href="#!">Carma / Store</a>
             </div>
         </div>
     </footer>
