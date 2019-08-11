@@ -7,7 +7,7 @@ router.get('/', function (req, res, next) {
 
   var db = fb.firestore();
   var collection = db.collection("Games");
-  const col = Array();
+  let col = Array();
   let AllGames = collection.get().
   then(data => {
     data.forEach(res => {
@@ -26,8 +26,7 @@ router.get('/', function (req, res, next) {
     }).catch(error => {
       console.log("Error: " + error);
     });
-  */
-  /*
+    
     let createGames = collection.doc('BFV').set({
       name: "BATTLEFIELD V",
       price: 99999,
