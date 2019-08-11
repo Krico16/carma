@@ -3,6 +3,13 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var db = require('firebase-admin');
+const service = require('./database/google-services.json')
+db.initializeApp({
+  credential: db.credential.cert(service), // Or credential
+  databaseURL: 'https://carma-web-75ffe.firebaseio.com/'
+});
+var storage = db.storage();
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -22,8 +29,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/dashboard',dashboardRouter);
+app.use('/dashboard',dashboardRouter,);
 app.use('/detail',detailRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -42,3 +50,5 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+module.exports.db = db.database();
+module.exports.storage = db.storage();
