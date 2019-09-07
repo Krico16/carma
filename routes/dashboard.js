@@ -3,6 +3,7 @@ var router = express.Router();
 var fb = require("firebase-admin");
 
 function getGames() {
+  var ar = new Array();;
   let Game = fb.firestore().collection("Games").doc("BFV");
   let getDoc = Game
     .get()
@@ -10,17 +11,20 @@ function getGames() {
       if (!doc.exists) {
         console.log("No such document!");
       } else {
-        console.log("Document data:", doc.data());
+        //console.log("Document data:", doc.data());
+        ar.push(doc.data());
       }
     })
     .catch(err => {
       console.log("Error getting document", err);
     });
-
+  return getDoc;
 }
 
 /* GET home page. */
 router.get("/", function(req, res, next) {
+  var d = getGames();
+
   /*
     var data = db.collection("Games").doc("/Rz5kg7Lrp5MpezIZqv9v/A/toEIor3KZHNj0bMgOnR4/juego1/JgKfTGb0V874GUNoTirU/a/LiXYUMF6XeWwB37mGX2m");
       data.get().then(doc => {
@@ -45,7 +49,7 @@ router.get("/", function(req, res, next) {
 
   res.render("dashboard", {
     title: "Carma Store",
-    games: {"a":2}
+    games: d
   });
 
   console.log(getGames());
