@@ -10,6 +10,7 @@
     "debug": "~2.6.9",
     "ejs": "~2.6.1",
     "express": "~4.16.1",
+    "express-manifest": "^0.1.1",
     "firebase": "^6.3.4",
     "firebase-admin": "^8.3.0",
     "http-errors": "~1.6.3",

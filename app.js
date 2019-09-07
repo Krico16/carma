@@ -10,12 +10,24 @@ db.initializeApp({
   databaseURL: 'https://carma-web-75ffe.firebaseio.com/'
 });
 var storage = db.firestore();
+// var manifest = require('express-manifest');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var dashboardRouter = require('./routes/dashboard');
 var detailRouter = require('./routes/detail');
 var app = express();
+
+//  Set manifest file
+/*
+app.use(manifest({
+  manifest: path.join(__dirname, 'public') + '/rev-manifest.json',
+  prepend: path.join(__dirname, 'public'),
+  reqPathFind: /^(\/?)/,
+  reqPathReplace: '',
+  debug: true
+}));
+*/
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

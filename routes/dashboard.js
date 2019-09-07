@@ -3,17 +3,20 @@ var router = express.Router();
 var fb = require("firebase-admin");
 
 function getGames() {
-  var juegos;
-  let Lista = fb.firestore().collection("Games");
-  let Data = Lista.get().then(doc => {
-    if (!doc.exists) {
-      console.log("No existe");
-    } else {
-      juegos.push(doc.data());
-    }
-  });
+  let Game = fb.firestore().collection("Games").doc("BFV");
+  let getDoc = Game
+    .get()
+    .then(doc => {
+      if (!doc.exists) {
+        console.log("No such document!");
+      } else {
+        console.log("Document data:", doc.data());
+      }
+    })
+    .catch(err => {
+      console.log("Error getting document", err);
+    });
 
-  return JSON.stringify(juegos);
 }
 
 /* GET home page. */
@@ -42,11 +45,10 @@ router.get("/", function(req, res, next) {
 
   res.render("dashboard", {
     title: "Carma Store",
-    games: {a:'1'}
-    
+    games: {"a":2}
   });
 
-  console.log(col);
+  console.log(getGames());
 });
 
 module.exports = router;
