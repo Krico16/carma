@@ -2,30 +2,55 @@ var express = require("express");
 var router = express.Router();
 var fb = require("firebase-admin");
 
-function getGames() {
-  var ar = new Array();;
-  let Game = fb.firestore().collection("Games").doc("BFV");
-  let getDoc = Game
-    .get()
-    .then(doc => {
-      if (!doc.exists) {
-        console.log("No such document!");
-      } else {
-        //console.log("Document data:", doc.data());
-        ar.push(doc.data());
-      }
+function getDocs() {
+  let citiesRef = fb.firestore().collection('Games/yU6CpTHmpn3MiaB14bQd/bfv');
+  let allCities = citiesRef.get()
+    .then(snapshot => {
+      snapshot.forEach(doc => {
+        console.log(doc.id, '=>', doc.data());
+      });
     })
     .catch(err => {
-      console.log("Error getting document", err);
-    });
-  return getDoc;
-}
+      console.log('Error getting documents', err);
+    });}
 
+function collectres(callback) {
+  var docRef = fb
+    .firestore()
+    .collection("Games")
+    .doc("yU6CpTHmpn3MiaB14bQd");
+  docRef
+    .get()
+    .then(function(doc) {
+      if (doc && doc.exists) {
+        callback(doc.data()); // Return your data inside the callback function
+      } else {
+        callback(null); // Return null if data doesn't exists
+      }
+    })
+    .catch(function(error) {
+      callback(null); // Return null in error case
+    });
+  }
 /* GET home page. */
+
+collectres(function(juegos) {
+  router.get("/", function(req, res, next) {
+    console.log(getDocs());
+    res.render("dashboard", {
+      tittle: "Carma Store",
+      games: juegos
+    });
+  });
+});
+
+module.exports = router;
+
+/*
 router.get("/", function(req, res, next) {
   var d = getGames();
 
-  /*
+  
     var data = db.collection("Games").doc("/Rz5kg7Lrp5MpezIZqv9v/A/toEIor3KZHNj0bMgOnR4/juego1/JgKfTGb0V874GUNoTirU/a/LiXYUMF6XeWwB37mGX2m");
       data.get().then(doc => {
         if (doc.exists) {
@@ -45,7 +70,7 @@ router.get("/", function(req, res, next) {
         category : "Acción, Aventura, Shooter",
         photo: "bfv.jpg"
       });
-    */
+    
 
   res.render("dashboard", {
     title: "Carma Store",
@@ -55,4 +80,4 @@ router.get("/", function(req, res, next) {
   console.log(getGames());
 });
 
-module.exports = router;
+*/
