@@ -1,42 +1,44 @@
 var express = require("express");
 var router = express.Router();
 var fb = require("firebase-admin");
+var todo = Array();
 
-function getDocs() {
-  let citiesRef = fb.firestore().collection('Games/yU6CpTHmpn3MiaB14bQd/bfv');
-  let allCities = citiesRef.get()
-    .then(snapshot => {
-      snapshot.forEach(doc => {
-        console.log(doc.id, '=>', doc.data());
-      });
-    })
-    .catch(err => {
-      console.log('Error getting documents', err);
-    });}
+function getDocs(callback) {
+  var docs = fb.firestore().collection('/Games/yU6CpTHmpn3MiaB14bQd/lista').get();
+  let docId;
+  docs.then((snapshot)=>{
+    snapshot.forEach((res)=>{
+      docId = res.id;
+    });
+    if(docId){
+      callback(docId);
+    }
+  });
+}
 
 function collectres(callback) {
-  var docRef = fb
-    .firestore()
-    .collection("Games")
-    .doc("yU6CpTHmpn3MiaB14bQd");
-  docRef
-    .get()
-    .then(function(doc) {
+  var docRef = fb.firestore().collection("Games").doc("yU6CpTHmpn3MiaB14bQd");
+  docRef.get().then(function (doc) {
       if (doc && doc.exists) {
         callback(doc.data()); // Return your data inside the callback function
       } else {
         callback(null); // Return null if data doesn't exists
       }
     })
-    .catch(function(error) {
+    .catch(function (error) {
       callback(null); // Return null in error case
     });
-  }
+}
+
+
+
 /* GET home page. */
 
-collectres(function(juegos) {
-  router.get("/", function(req, res, next) {
-    console.log(getDocs());
+collectres(function (juegos) {
+  router.get("/", function (req, res, next) {
+    console.log(getDocs((data)=>{
+      console.log(data)
+    }));
     res.render("dashboard", {
       tittle: "Carma Store",
       games: juegos
@@ -50,7 +52,7 @@ module.exports = router;
 router.get("/", function(req, res, next) {
   var d = getGames();
 
-  
+
     var data = db.collection("Games").doc("/Rz5kg7Lrp5MpezIZqv9v/A/toEIor3KZHNj0bMgOnR4/juego1/JgKfTGb0V874GUNoTirU/a/LiXYUMF6XeWwB37mGX2m");
       data.get().then(doc => {
         if (doc.exists) {
@@ -61,7 +63,7 @@ router.get("/", function(req, res, next) {
       }).catch(error => {
         console.log("Error: " + error);
       });
-      
+
       let createGames = collection.doc('BFV').set({
         name: "BATTLEFIELD V",
         price: 99999,
@@ -70,7 +72,7 @@ router.get("/", function(req, res, next) {
         category : "Acción, Aventura, Shooter",
         photo: "bfv.jpg"
       });
-    
+
 
   res.render("dashboard", {
     title: "Carma Store",
