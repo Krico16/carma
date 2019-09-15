@@ -1,85 +1,35 @@
 var express = require("express");
 var router = express.Router();
 var fb = require("firebase-admin");
-var todo = Array();
-
-function getDocs(callback) {
-  var docs = fb.firestore().collection('/Games/yU6CpTHmpn3MiaB14bQd/lista').get();
-  let docId;
-  docs.then((snapshot)=>{
-    snapshot.forEach((res)=>{
-      docId = res.id;
-    });
-    if(docId){
-      callback(docId);
-    }
-  });
-}
-
-function collectres(callback) {
-  var docRef = fb.firestore().collection("Games").doc("yU6CpTHmpn3MiaB14bQd");
-  docRef.get().then(function (doc) {
-      if (doc && doc.exists) {
-        callback(doc.data()); // Return your data inside the callback function
-      } else {
-        callback(null); // Return null if data doesn't exists
-      }
-    })
-    .catch(function (error) {
-      callback(null); // Return null in error case
-    });
-}
-
-
 
 /* GET home page. */
 
-collectres(function (juegos) {
-  router.get("/", function (req, res, next) {
-    console.log(getDocs((data)=>{
-      console.log(data)
-    }));
-    res.render("dashboard", {
-      tittle: "Carma Store",
-      games: juegos
+router.get('/dashboard', async function (req, res, next) {
+  var Lista = [];
+
+  try {
+    var AllGames = await fb.firestore().collection('/Games/yU6CpTHmpn3MiaB14bQd/lista').get();
+    AllGames.forEach(doc => {
+      Lista.push({
+        id: doc.id,
+        data: {
+          name: doc.data().name,
+          info: doc.data().info,
+          release: doc.data().date,
+          price: doc.data().price,
+          language: "Faltan la api",
+          company: "Faltan la api"
+        }
+      });
     });
-  });
+
+    res.render("dashboard",{
+      title: "Carma Store",
+      games: Lista
+    });
+  } catch (error) {
+    res.status(200).json({Message: "Error en la pagina"});
+  }
 });
 
 module.exports = router;
-
-/*
-router.get("/", function(req, res, next) {
-  var d = getGames();
-
-
-    var data = db.collection("Games").doc("/Rz5kg7Lrp5MpezIZqv9v/A/toEIor3KZHNj0bMgOnR4/juego1/JgKfTGb0V874GUNoTirU/a/LiXYUMF6XeWwB37mGX2m");
-      data.get().then(doc => {
-        if (doc.exists) {
-          console.log(doc.data());
-        } else {
-          console.log("No hay data");
-        }
-      }).catch(error => {
-        console.log("Error: " + error);
-      });
-
-      let createGames = collection.doc('BFV').set({
-        name: "BATTLEFIELD V",
-        price: 99999,
-        info : "Vive el mayor conflicto de la humanidad con gracias a este regreso de la saga a sus orígenes con una representación inédita de la 2ª Guerra Mundial. Ponte al frente de la patrulla y llévala a la victoria con nuevas formas de cambiar el campo de batalla a tu antojo. Forma tu propia compañía con vehículos, armas y soldados personalizados y vive un viaje épico en Vientos de guerra.",
-        date : "20-10-2018",
-        category : "Acción, Aventura, Shooter",
-        photo: "bfv.jpg"
-      });
-
-
-  res.render("dashboard", {
-    title: "Carma Store",
-    games: d
-  });
-
-  console.log(getGames());
-});
-
-*/
