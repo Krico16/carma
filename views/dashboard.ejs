@@ -152,30 +152,15 @@
             <div class="row">
                 <% Object.keys(games).forEach(function(d){ %>
                 <div class="col s12 m4 l4">
-                    <div class="card">
-                        <a href="#">
-                            <div class="card heighting">
-                                <div class="card-image images">
-                                    <img src="" alt="">
-                                </div>
-                                <div class="card-content">
-                                    <h5 class="card-title til"><%= games[d] %></h5>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <br>
-                </div>
-                <% }); %>
-                <div class="col s12 m4 l4">
-                    <a href="../">
+                    <a href="../detail/<%= games[d].id %>">
                         <div class="card heighting">
                             <div class="card-image images">
                                 <img src="https://www.tvdaily.it/wp-content/uploads/2013/09/gtaV.jpg">
                             </div>
                             <div class="card-content">
-                                <h5 class="card-title til">Grand Theft Auto V</h5>
-                                <p class="green-text center-align">S/100.00</p>
+                                <h5 class="card-title til"><%= games[d].data.name %></h5>
+                                <p class="green-text center-align">S/. <%= games[d].data.price %></p>
+                                <p class="center-align"><%= games[d].data.company %></p>
                             </div>
                             <div class="plus">
                                 <a href="#" class="waves-effect waves-teal btn txtbutton blue"
@@ -184,24 +169,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="col s12 m4 l4">
-                    <a href="#">
-                        <div class="card heighting">
-                            <div class="card-image images">
-                                <img
-                                    src="https://cdn02.nintendo-europe.com/media/images/10_share_images/games_15/nintendo_switch_download_software_1/H2x1_NSwitchDS_RocketLeague_image1600w.jpg">
-                            </div>
-                            <div class="card-content">
-                                <h5 class="card-title til">Rocket League</h5>
-                                <p class="green-text center-align">S/35.00</p>
-                            </div>
-                            <div class="plus">
-                                <a href="#" class="waves-effect waves-teal btn txtbutton blue" style="display:block;"><i
-                                        class="fas fa-shopping-cart left"></i>Agregar</a>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                <% }); %>
             </div>
         </div>
     </main>

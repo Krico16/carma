@@ -4,7 +4,7 @@ var fb = require("firebase-admin");
 
 /* GET home page. */
 
-router.get('/dashboard', async function (req, res, next) {
+router.get('/', async function (req, res, next) {
   var Lista = [];
 
   try {
@@ -28,7 +28,7 @@ router.get('/dashboard', async function (req, res, next) {
       games: Lista
     });
   } catch (error) {
-    res.status(200).json({Message: "Error en la pagina"});
+    res.status(200).json({Message: "Error en la pagina" + error});
   }
 });
 
