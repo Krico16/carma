@@ -1,12 +1,148 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="">
+
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/materialize.min.css">
+    <link rel="stylesheet" href="/stylesheets/dashboard.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="stylesheet" href="/assets/owlcarousel/assets/owl.carousel.min.css">
+
+    <script src="/assets/vendors/jquery.min.js"></script>
+    <script src="/assets/owlcarousel/owl.carousel.js"></script>
+    <title><%= title %></title>
 </head>
+
 <body>
-    <h1>hola</h1>
+    <header>
+        <nav class="gradient">
+            <div class="nav-wrapper tam">
+                <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="fa fa-bars"
+                        aria-hidden="true"></i></a>
+                <a href="../dashboard" class="brand-logo center">Carma</a>
+
+                <a class='dropdown-trigger right droping' href='../dashboard.ejs' data-target='dropdown1'><i
+                        class="fas fa-user-circle"></i></a>
+                <ul id='dropdown1' class='dropdown-content gradient' style="border-radius: 5px;">
+                    <li class="gradient">
+                        <img src="https://pbs.twimg.com/profile_images/745968126555267073/Z5JOC79S_400x400.jpg"
+                            class="avatar">
+                    </li>
+                    <li>
+                        <a class="modal-trigger waves-light alt" href="#modal1"> <i
+                                class="fas fa-user-circle"></i>Iniciar Sesión</a>
+                    </li>
+                    <li>
+                        <a class="waves-light alt facebook"><i class="fab fa-facebook"></i>Facebook</a>
+                    </li>
+                    <li>
+                        <a class="waves-light alt google"><i class="fab fa-google-plus-g"></i>Google</a>
+                    </li>
+                </ul>
+                <div id="modal1" class="modal modal-fixed-footer tow" style="height: 425px;max-width: 300px;">
+                    <div class="modal-content">
+                        <div class="row">
+                            <form>
+                                <h4 class="center">Login</h4>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <i class="fas fa-user-circle prefix"></i>
+                                        <input id="account_box" type="text" class="validate">
+                                        <label for="account_box">Usuario</label>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <i class="fas fa-key prefix"></i>
+                                        <input id="vpn_key" type="password" class="validate">
+                                        <label for="vpn_key">Contraseña</label>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <a href="#!" class="modal-close waves-effect btn blue" style="display: block;">Iniciar
+                            sesión</a>
+                        <a href="#" class="login-href">Olvido su contraseña?</a>
+                        <a href="#" class="login-href" style="float: right;">Registrarse</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <ul id="slide-out" class="sidenav sidenav-fixed gradient">
+            <ul class="collapsible white-text">
+                <li class="log">
+                    <img src="images/slogan.png" alt="">
+                </li>
+                <li>
+                    <div class="collapsible-header letter"><a href="../dashboard" style="color: white;"><i
+                                class="fa fa-home blue"></i>Inicio </a></div>
+                </li>
+                <li>
+                    <div class="collapsible-header letter"><i class="fab fa-dashcube blue"></i>Categorias <span
+                            class="badge"><i class="fas fa-angle-down right"></i></span></div>
+                    <div class="collapsible-body gradient"><a href="#" class="alt">Lo mas vendido</a></div>
+                    <div class="collapsible-body gradient"><a href="#" class="alt">Actualizados</a></div>
+                    <div class="collapsible-body gradient"><a href="#" class="alt">Novedades</a></div>
+                    <div class="collapsible-body gradient"><a href="#" class="alt">Proximamente</a></div>
+                    <div class="collapsible-body gradient"><a href="#" class="alt">Ofertas</a></div>
+                    <div class="collapsible-body gradient"><a href="#" class="alt">Realidad Virtual</a></div>
+
+                </li>
+                <li>
+                    <div class="collapsible-header letter"><i class="fab fa-gg-circle blue"></i>Generos <span
+                            class="badge"><i class="fas fa-angle-down right"></i></span></div>
+                    <div class="collapsible-body gradient"><a href="#" class="alt">Free to Play</a></div>
+                    <div class="collapsible-body gradient"><a href="#" class="alt">Acceso Anticipado</a></div>
+                    <div class="collapsible-body gradient"><a href="#" class="alt">Acción</a></div>
+                    <div class="collapsible-body gradient"><a href="#" class="alt">Aventura</a></div>
+                    <div class="collapsible-body gradient"><a href="#" class="alt">Carreras</a></div>
+                    <div class="collapsible-body gradient"><a href="#" class="alt">Casual</a></div>
+                    <div class="collapsible-body gradient"><a href="#" class="alt">Desportes</a></div>
+                    <div class="collapsible-body gradient"><a href="#" class="alt">Estrategia</a></div>
+                </li>
+                <li>
+                    <div class="collapsible-header letter"><i class="fas fa-plus blue"></i>Nuevos <span class="badge"><i
+                                class="fas fa-angle-down right"></i></span></div>
+                    <div class="collapsible-body gradient"><a href="" class="alt">Libreria</a></div>
+                </li>
+            </ul>
+        </ul>
+    </header>
+    <main id="contenedor">
+        <div class="container">
+            <div class="row">
+                <div class="jumbotron" id="tagline">
+                    <img src="<%= data.photo %>" alt="">
+                </div>
+                <div class="row">
+                    <div class="col m12">
+                        <h3><%= data.name %></h3>
+
+                        <div class="divider"></div>
+                        <p><%= data.info %></p>
+                        <p>S/. <%= data.price %></p>
+                        <p><%= data.company %></p>
+
+                        <button class="btn btn-flat blue waves-effect waves-light white-text"><i
+                                class="material-icons left">shopping_cart</i> Comprar</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="page-footer gradient black-text center">
+        <div class="footer-copyright">
+            <div class="container white-text">
+                © 2019 Copyright : <a href="#!">Carma / Store</a>
+            </div>
+        </div>
+    </footer>
+    <script src="https://kit.fontawesome.com/8e0373a1f7.js"></script>
+    <script src="/assets/vendors/highlight.js"></script>
+    <script src="/assets/js/app.js"></script>
+    <script src="/javascripts/materialize.min.js"></script>
+    <script src="/javascripts/jquery.js"></script>
+    <script src="/javascripts/main.js"></script>
 </body>
+
 </html>

@@ -6,12 +6,17 @@ var fb = require("firebase-admin");
 
 router.get('/', async function (req, res, next) {
   var Lista = [];
+  var ListaImg = [];
 
   try {
     var AllGames = await fb.firestore().collection('/Games/yU6CpTHmpn3MiaB14bQd/lista').get();
     AllGames.forEach(doc => {
       //console.log(doc.data());
-      
+
+      ListaImg.push({
+        url: doc.data().photo
+      });
+
       Lista.push({
         id: doc.id,
         data: {
@@ -20,18 +25,19 @@ router.get('/', async function (req, res, next) {
           release: doc.data().date,
           photo: doc.data().photo,
           price: doc.data().price,
-          language: "Faltan la api",
-          company: "Faltan la api"
+          language: "Falta la api",
+          company: "Falta la api"
         }
       });
     });
 
-    res.render("dashboard",{
+    res.render("dashboard", {
       title: "Carma Store",
-      games: Lista
+      games: Lista,
+      Images: ListaImg
     });
   } catch (error) {
-    res.status(200).json({Message: "Error en la pagina" + error});
+    res.status(200).json({ Message: "Error en la pagina" + error });
   }
 });
 

@@ -111,7 +111,7 @@ p {
 }
 
 .til {
-    font-size: 21px !important;
+    font-size: 100% !important;
     text-align: center !important;
 }
 
@@ -174,7 +174,4 @@ p {
 }
 .google{
     color: orangered !important;
-}
-tam{
-    height: 150px !important;
 }
