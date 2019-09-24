@@ -16,7 +16,7 @@ router.get('/', async function (req, res, next) {
       ListaImg.push({
         url: doc.data().photo
       });
-      ListaImg.length(3);
+      ListaImg.length = 3;
 
       Lista.push({
         id: doc.id,
