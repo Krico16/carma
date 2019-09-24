@@ -37,7 +37,7 @@ router.get('/', async function (req, res, next) {
       Images: ListaImg
     });
   } catch (error) {
-    res.status(200).json({ Message: "Error en la pagina" + error });
+    res.status(200).json({ Message: "Error en la pagina",Error: error });
   }
 });
 
