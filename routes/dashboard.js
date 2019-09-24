@@ -16,7 +16,6 @@ router.get('/', async function (req, res, next) {
       ListaImg.push({
         url: doc.data().photo
       });
-      ListaImg.length = 3;
 
       Lista.push({
         id: doc.id,
@@ -31,6 +30,7 @@ router.get('/', async function (req, res, next) {
         }
       });
     });
+    delete ListaImg.splice(ListaImg.length - 4,3)
 
     res.render("dashboard", {
       title: "Carma Store",
